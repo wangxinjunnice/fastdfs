@@ -26,6 +26,6 @@ spring:
     max-request-size: 500Mb   # 总上传的数据大小
 
 upgrade:
-    sourcePath: /home/upload/test/update.tar.gz
+    sourcePath: /home/upload/update.tar.gz
     targetPath: /home/upload/test
     shellPath: /home/upload/test/update/update.sh

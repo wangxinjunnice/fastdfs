@@ -150,6 +150,9 @@ public class ZipUtil {
             // 要解压到的目录(没有则创建)
             String extractPath = targetPath;
             File sourceFile = new File(sourcePath);
+            if(!sourceFile.exists()){
+                return;
+            }
 
             TarArchiveInputStream fin = new TarArchiveInputStream(new GzipCompressorInputStream(new FileInputStream(sourceFile)));
 
