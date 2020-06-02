@@ -1,7 +1,6 @@
 package com.cn.fastdfs.utils;
 
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 
@@ -78,7 +77,7 @@ public class DownloadUtil {
 
         try {
             //在指定目录下载文件
-            String paths="/home/upload/";
+//            String paths="/home/upload/";
             File file = new File(path);
             String filename = file.getName();
             InputStream fis = new BufferedInputStream(new FileInputStream(path));

@@ -1,4 +1,4 @@
-package com.cn.fastdfs.conf;
+package com.cn.fastdfs.utils;
 
 
 import com.github.tobato.fastdfs.domain.fdfs.StorePath;
