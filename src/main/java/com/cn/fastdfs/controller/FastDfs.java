@@ -27,7 +27,7 @@ public class FastDfs {
      * @return
      * @throws IOException
      */
-    @ApiOperation(value = "图片上传", notes = "JSON")
+    @ApiOperation(value = "图片上传")
     @PostMapping("/upload")
     public Object upload(@RequestParam MultipartFile file) throws IOException {
         String path = fastDFSClientWrapper.upload(file);
@@ -39,7 +39,7 @@ public class FastDfs {
      * @param imgBase64
      * @return
      */
-    @ApiOperation(value = "图片上传 Base64", notes = "JSON")
+    @ApiOperation(value = "图片上传 Base64")
     @PostMapping("/upload/base64")
     public Object upload(@RequestBody @ApiParam(value = "base64转码") String imgBase64) throws IOException {
         byte[] bytes = FastDfs.imgupload(imgBase64);
@@ -52,7 +52,7 @@ public class FastDfs {
      * 删除文件  按全路径
      * @param path  文件路径
      */
-    @ApiOperation(value = "图片删除", notes = "JSON")
+    @ApiOperation(value = "图片删除")
     @DeleteMapping("/delete")
     public Object delete(@RequestParam(value = "path")@ApiParam(value = "文件路径") String path){
         fastDFSClientWrapper.delete(path);
@@ -65,7 +65,7 @@ public class FastDfs {
      * 下载图片
      *  @param filePath  文件路径
      */
-    @ApiOperation(value = "图片下载", notes = "JSON")
+    @ApiOperation(value = "图片下载")
     @GetMapping("/download")
     public void download(@RequestParam(value = "filePath")@ApiParam(value = "文件路径") String filePath, HttpServletResponse response) throws IOException {
         byte[] bytes = fastDFSClientWrapper.download(filePath);

@@ -24,3 +24,8 @@ spring:
   multipart:
     max-file-size: 500Mb      # 单个文件大小
     max-request-size: 500Mb   # 总上传的数据大小
+
+upgrade:
+    sourcePath: /home/upload/test/update.tar.gz
+    targetPath: /home/upload/test
+    shellPath: /home/upload/test/update/update.sh

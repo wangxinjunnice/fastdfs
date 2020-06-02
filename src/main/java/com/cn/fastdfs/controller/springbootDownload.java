@@ -18,7 +18,7 @@ public class springbootDownload {
      * 上传文件
      * @param file
      */
-    @ApiOperation(value = "文件上传", notes = "JSON")
+    @ApiOperation(value = "文件上传")
     @PostMapping("/upload")
     public Object upload(MultipartFile file){
 
@@ -31,7 +31,7 @@ public class springbootDownload {
      * 下载文件  根据文件名称
      * @param fileName 文件名称
      */
-    @ApiOperation(value = "文件下载 根据文件名称", notes = "JSON")
+    @ApiOperation(value = "文件下载 根据文件名称")
     @GetMapping("/download")
     public Object download(@RequestParam(value = "fileName")@ApiParam(value = "文件名称") String fileName, HttpServletResponse response){
         DownloadUtil.download(fileName,response);
@@ -42,7 +42,7 @@ public class springbootDownload {
      * 下载文件   根据绝对路径下载
      * @param path 绝对路径
      */
-    @ApiOperation(value = "文件下载 根据绝对路径下载", notes = "JSON")
+    @ApiOperation(value = "文件下载 根据绝对路径下载")
     @GetMapping("/downloadPath")
     public Object downloadPath(@RequestParam(value = "path")@ApiParam(value = "文件绝对路径") String path, HttpServletResponse response){
         DownloadUtil.downloadPath(path,response);
