@@ -17,7 +17,7 @@ public class FastdfsApplication {
 	}
 	
 	
-	//当配置文件不生效时 注册下面对象
+	//该对象将会覆盖配置文件中的配置文件
 	@Bean
 	public MultipartConfigElement multipartConfigElement(){
 		MultipartConfigFactory factory=new MultipartConfigFactory();
