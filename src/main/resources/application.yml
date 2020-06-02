@@ -3,7 +3,7 @@ server:
 
 fdfs:
   trackerList:
-    - 49.233.209.28:22122
+    - 127.0.0.1:22122
 
 #eureka:
 #  client:
