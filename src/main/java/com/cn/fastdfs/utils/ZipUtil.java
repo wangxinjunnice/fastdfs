@@ -6,7 +6,9 @@ import org.apache.commons.compress.compressors.gzip.GzipCompressorInputStream;
 import org.apache.commons.compress.utils.IOUtils;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
@@ -189,7 +191,7 @@ public class ZipUtil {
     public static void  installShell(String shellPath){
 
         try {
-            String  bashCommand = "sh "+shellPath;
+            String  bashCommand = "bash "+shellPath;
             Runtime runtime = Runtime.getRuntime();
             Process pro = runtime.exec(bashCommand);
             try {

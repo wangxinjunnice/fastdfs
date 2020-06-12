@@ -5,9 +5,18 @@ import com.cn.fastdfs.utils.Response;
 import com.cn.fastdfs.utils.ZipUtil;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/unZipFile")
@@ -24,6 +33,9 @@ public class UnzipFile {
     private String shellPath;//脚本绝对路径
 
 
+    private final Logger logger = LoggerFactory.getLogger(UnzipFile.class);
+
+
 
     /**
      * 解压文件到指定位置  tar文件
@@ -32,13 +44,14 @@ public class UnzipFile {
     @ApiOperation(value = "解压tar包")
     @GetMapping("/unTar")
     public Object unTar(){
-
+        System.out.println();
         try {
             ZipUtil.unTar(sourcePaths,targetPath);
         } catch (Exception e) {
             e.printStackTrace();
             return Response.error("解压失败"+e.getMessage());
         }
+
         return Response.ok("解压成功");
 
     }
@@ -93,6 +106,41 @@ public class UnzipFile {
         } catch (Exception e) {
             e.printStackTrace();
             return Response.error("执行失败");
+        }
+        return Response.ok("执行成功");
+    }
+
+    /**
+     * 执行shell脚本
+     */
+    @ApiOperation(value = "执行shell脚本")
+    @GetMapping("/installShells")
+    public Object installShells() {
+
+        try {
+            String  bashCommand = "bash "+shellPath;
+            Runtime runtime = Runtime.getRuntime();
+            Process pro = runtime.exec(bashCommand);
+            try {
+                int status = pro.waitFor();
+                if (status != 0){
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            BufferedReader br = new BufferedReader(new InputStreamReader(pro.getInputStream()));
+            StringBuffer strbr = new StringBuffer();
+            String line;
+            while ((line = br.readLine())!= null){
+                strbr.append(line).append("\n");
+                if(line.equals("ok")){
+                    logger.error("shell脚本执行成功------------->>>>@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+                }
+            }
+            br.close();
+        }
+        catch (IOException ec){
+            ec.printStackTrace();
         }
         return Response.ok("执行成功");
     }

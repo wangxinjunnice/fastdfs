@@ -11,12 +11,31 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class FastDFSClientWrapper {
 
     @Autowired
     private FastFileStorageClient fastFileStorageClient;
+
+    /**
+     * 批量上传图片  默认最大限制（10485760字节）  可在配置文件中修改上传文件大小
+     * @param file
+     * @return
+     * @throws IOException
+     */
+    public List<String> batchUpload(MultipartFile[] file) throws IOException {
+
+        List<String> list=new ArrayList<>();
+        for (MultipartFile multipartFile : file) {
+            StorePath storePath= fastFileStorageClient.uploadFile(multipartFile.getInputStream(),multipartFile.getSize(),
+                    FilenameUtils.getExtension(multipartFile.getOriginalFilename()), null);
+            list.add(storePath.getFullPath());
+        }
+       return list;
+    }
 
     /**
      * 上传图片  默认最大限制（10485760字节）  可在配置文件中修改上传文件大小

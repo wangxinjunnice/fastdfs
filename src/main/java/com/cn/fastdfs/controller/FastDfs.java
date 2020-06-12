@@ -13,6 +13,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.List;
 
 @RestController
 @RequestMapping("/fastdfs")
@@ -20,6 +21,19 @@ public class FastDfs {
 
     @Autowired
     private FastDFSClientWrapper fastDFSClientWrapper;
+
+    /**
+     * 批量上传图片
+     * @param file
+     * @return
+     * @throws IOException
+     */
+    @ApiOperation(value = "批量图片上传")
+    @PostMapping("/batchUpload")
+    public Object upload(@RequestParam MultipartFile[] file) throws IOException {
+        List<String> path = fastDFSClientWrapper.batchUpload(file);
+        return Response.ok(path);
+    }
 
     /**
      * 上传图片

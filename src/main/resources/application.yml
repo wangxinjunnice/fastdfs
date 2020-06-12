@@ -18,14 +18,24 @@ fdfs:
 #spring:
 #  application:
 #    name: server-fastdfs #此实例注册到eureka服务端的name
+# 公共配置地址
+
+base:
+  filePath:
+    path: /home/upload/
 
 spring:
   # 上传文件大小 springboot2以后 spring.servlet.multipart.max-file-size=100MB
   multipart:
     max-file-size: 500Mb      # 单个文件大小
     max-request-size: 500Mb   # 总上传的数据大小
+  # 自定义静态资源，映射成/static/
+  mvc:
+    static-path-pattern: /static/**
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${base.filePath.path}
 
 upgrade:
     sourcePath: /home/upload/update.tar.gz
     targetPath: /home/upload/test
-    shellPath: /home/upload/test/update/update.sh
+    shellPath: /home/upload/bash.sh
