@@ -123,36 +123,18 @@ public class FastDfs {
 
     //测试
     @ApiOperation(value = "图片下载")
-    @GetMapping("/test")
-    public void test(@RequestParam(value = "filePath")@ApiParam(value = "文件路径") String filePath, HttpServletResponse response) throws IOException {
-
+    @GetMapping("/project")
+    public void project() {
         Map<String,Object> map=new HashMap<>();
         map.put("name","张三");
     }
 
     //测试
     @ApiOperation(value = "图片下载")
-    @GetMapping("/test1")
-    public void test1(@RequestParam(value = "filePath")@ApiParam(value = "文件路径") String filePath, HttpServletResponse response) throws IOException {
+    @GetMapping("/project1")
+    public void project1() {
         Map<String,Object> map=new HashMap<>();
         map.put("name","张三");
     }
 
-    //测试
-    @ApiOperation(value = "图片下载")
-    @GetMapping("/one")
-    public void one(@RequestParam(value = "filePath")@ApiParam(value = "文件路径") String filePath, HttpServletResponse response) throws IOException {
-        byte[] bytes = fastDFSClientWrapper.download(filePath);
-        response.setHeader("Content-disposition", "attachment;filename=" + URLEncoder.encode(System.currentTimeMillis()+".jpg", "UTF-8"));
-        FastDfs.downImg(bytes,response);
-    }
-
-    //测试
-    @ApiOperation(value = "图片下载")
-    @GetMapping("/two")
-    public void two(@RequestParam(value = "filePath")@ApiParam(value = "文件路径") String filePath, HttpServletResponse response) throws IOException {
-        byte[] bytes = fastDFSClientWrapper.download(filePath);
-        response.setHeader("Content-disposition", "attachment;filename=" + URLEncoder.encode(System.currentTimeMillis()+".jpg", "UTF-8"));
-        FastDfs.downImg(bytes,response);
-    }
 }
