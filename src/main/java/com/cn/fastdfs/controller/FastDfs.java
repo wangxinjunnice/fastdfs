@@ -13,7 +13,9 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/fastdfs")
@@ -117,5 +119,22 @@ public class FastDfs {
                 e.printStackTrace();
             }
         }
+    }
+
+    //测试
+    @ApiOperation(value = "图片下载")
+    @GetMapping("/test")
+    public void test(@RequestParam(value = "filePath")@ApiParam(value = "文件路径") String filePath, HttpServletResponse response) throws IOException {
+
+        Map<String,Object> map=new HashMap<>();
+        map.put("name","张三");
+    }
+
+    //测试
+    @ApiOperation(value = "图片下载")
+    @GetMapping("/test1")
+    public void test1(@RequestParam(value = "filePath")@ApiParam(value = "文件路径") String filePath, HttpServletResponse response) throws IOException {
+        Map<String,Object> map=new HashMap<>();
+        map.put("name","张三");
     }
 }
